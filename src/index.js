@@ -43,7 +43,7 @@ app.use('/', UserController);
 
 const WalletController = require('./controller/WalletController');
 
-app.use('/wallet', WalletController);
+app.use('/', WalletController);
 
 //------------------------------------------------------------------------------------//
 

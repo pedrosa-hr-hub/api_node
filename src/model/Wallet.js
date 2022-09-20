@@ -1,27 +1,29 @@
 const Sequelize = require("sequelize");
 const connection = require("./database");
+const User = require('./User');
 
-const User = connection.define("user",{
+const Wallet = connection.define("wallet",{
      id:{
           type: Sequelize.INTEGER,
           autoIncrement: true,
           allowNull: false,
           primaryKey: true
      },
-     user:{
-          type: Sequelize.STRING,
-          allowNull: false
-     },
-     email:{
-          type: Sequelize.STRING,
-          allowNull: false
-     }, 
-     password:{
+     name:{
           type: Sequelize.STRING,
           allowNull: false
      }
 });
 
-//User.sync({force:true});
+Wallet.belongsTo(User,{
+     constraint: true,
+     foreignKey: 'idWallet'
+});
 
-module.exports = User;
+User.hasMany(Wallet,{
+     foreignKey: 'idWallet'
+});
+
+Wallet.sync({force: true});
+
+module.exports = Wallet;
