@@ -1,0 +1,35 @@
+{
+  "name": "api_node",
+  "version": "1.0.0",
+  "description": "api to my aplication",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrosa-hr-hub/api_node.git"
+  },
+  "keywords": [
+    "api",
+    "node",
+    "sequelize"
+  ],
+  "author": "Pedro de Sá",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedrosa-hr-hub/api_node/issues"
+  },
+  "homepage": "https://github.com/pedrosa-hr-hub/api_node#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.2",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.23.0"
+  }
+}
