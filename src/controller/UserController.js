@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../model/User');
 
-router.post('/users', (req, res) => {
+router.post('/user', (req, res) => {
 
     //catch infos
     const user = req.body.user;
@@ -30,6 +30,20 @@ router.post('/users', (req, res) => {
       res.sendStatus(501);
 
     });
+
+});
+
+router.get ('/users',(req, res) =>{
+
+  User.findAll().then(user =>{
+
+    res.status(200).send(user);
+
+  }).catch((error)=>{
+
+    console.log(error);
+
+  });
 
 });
 
