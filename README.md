@@ -1,5 +1,7 @@
 # :boom: DESCRIÇÃO DO PROJETO
 
+![LOGO](https://user-images.githubusercontent.com/57974960/191649883-28c62b71-4239-49da-a24f-e1cdba4303bf.JPG)
+
 Uma API para o sistema Moon Invesment, um sistema web de gestão de carteira de investimentos.:moneybag:
 As funcionalidades de CRUD(Create, Read, Update, Delete) implantadas pela API serão consumidas pelo sistema, onde o back-end será desacoplado da aplicação
 A motivação disso é para possiveis expanções para sistemas mobile em um futuro proxímo.
