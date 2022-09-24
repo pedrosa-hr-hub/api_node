@@ -1,7 +1,11 @@
+//----------------------------------config-------------------------------------------//
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../model/User');
+
+//----------------------------------routers------------------------------------------//
 
 router.post('/user', (req, res) => {
 
@@ -46,5 +50,6 @@ router.get ('/users',(req, res) =>{
   });
 
 });
+//----------------------------------routers------------------------------------------//
 
 module.exports = router;

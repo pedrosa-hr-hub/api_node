@@ -4,7 +4,7 @@
   "description": "api to my aplication",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",

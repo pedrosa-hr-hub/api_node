@@ -20,7 +20,7 @@ const port = process.env.PORT;
 
 //-----------------------------------datababse----------------------------------------//
 
-const connection = require("../src/model/database");
+const connection = require("./model/database");
 connection
      .authenticate()
      .then(() => {
@@ -44,6 +44,22 @@ app.use('/', UserController);
 const WalletController = require('./controller/WalletController');
 
 app.use('/', WalletController);
+
+//------------------------------------------------------------------------------------//
+
+//----------------------------------router-wallet-------------------------------------//
+
+const SellController = require('./controller/SellController');
+
+app.use('/', SellController);
+
+//------------------------------------------------------------------------------------//
+
+//----------------------------------router-wallet-------------------------------------//
+
+const BuyController = require('./controller/BuyController');
+
+app.use('/', BuyController);
 
 //------------------------------------------------------------------------------------//
 

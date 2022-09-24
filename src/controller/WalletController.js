@@ -1,28 +1,46 @@
+//----------------------------------config-------------------------------------------//
+
 const express = require('express');
 const router = express.Router();
 const Wallet = require('../model/Wallet');
 
+//----------------------------------routers------------------------------------------//
+
 router.post('/wallet', (req, res) => {
 
-     //catch infos
      const user = req.body.user;
      const wallet_name = req.body.wallet;
      
-     //save on database
-    Wallet.create({
+      Wallet.create({
 
-     user: user,
-     name: wallet_name,
+      user: user,
+      name: wallet_name,
 
-   }).then(()=> {
+    }).then(()=> {
 
-     res.sendStatus(201);
+      res.sendStatus(201);
 
-   }).catch(()=>{
+    }).catch(()=>{
 
-     res.sendStatus(501);
+      res.sendStatus(501);
 
-   });
+    });
 });
+
+router.get ('/wallet',(req, res) =>{
+
+  Wallet.findAll().then(user =>{
+
+    res.status(200).send(user);
+
+  }).catch((error)=>{
+
+    console.log(error);
+
+  });
+
+});
+
+//----------------------------------routers------------------------------------------//
 
 module.exports = router;
