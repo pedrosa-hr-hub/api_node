@@ -28,20 +28,47 @@ _POST_
 
 _GET_
 
-- `ROTA`:
-- `DESCRIÇÃO`:
+- `ROTA`: /users
+- `DESCRIÇÃO`: Usado para listar todos usuários.
+
+- `ROTA`: /wallet
+- `DESCRIÇÃO`: Usado para listar todas carteiras.
+
+- `ROTA`: /buy
+- `DESCRIÇÃO`: Usado para listar todas compras.
+
+- `ROTA`: /sell
+- `DESCRIÇÃO`: Usado para listar todas vendas.
 
 
 _PUT_
 
-- `ROTA`:
-- `DESCRIÇÃO`:
+- `ROTA`: /users/id
+- `DESCRIÇÃO`: Usado para editar um usuário.
+
+- `ROTA`: /wallet/id
+- `DESCRIÇÃO`: Usado para editar uma carteira.
+
+- `ROTA`: /buy/id
+- `DESCRIÇÃO`: Usado para editar uma compra.
+
+- `ROTA`: /sell/id
+- `DESCRIÇÃO`: Usado para editar uma venda.
 
 
 _DELETE_
 
-- `ROTA`:
-- `DESCRIÇÃO`:
+- `ROTA`: /users/id
+- `DESCRIÇÃO`: Usado para deletar um usuário.
+
+- `ROTA`: /wallet/id
+- `DESCRIÇÃO`: Usado para deletar uma carteira.
+
+- `ROTA`: /buy/id
+- `DESCRIÇÃO`: Usado para deletar uma compra.
+
+- `ROTA`: /sell/id
+- `DESCRIÇÃO`: Usado para deletar uma venda.
 
 
 
