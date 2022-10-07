@@ -24,6 +24,6 @@ User.hasMany(Wallet,{
      foreignKey: 'idWallet'
 });
 
-//Wallet.sync({force: true});
+Wallet.sync({force: true});
 
 module.exports = Wallet;
