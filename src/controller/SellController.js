@@ -94,7 +94,6 @@ router.delete('/sell/:id', (req, res) => {
   
   });
 
-
 router.put('/sell/:id', (req, res) => {
 
   try {
