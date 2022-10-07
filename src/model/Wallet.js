@@ -17,7 +17,7 @@ const Wallet = connection.define("wallet",{
 
 Wallet.belongsTo(User,{
      constraint: true,
-     foreignKey: 'idWallet'
+     foreignKey: 'idUser'
 });
 
 User.hasMany(Wallet,{
