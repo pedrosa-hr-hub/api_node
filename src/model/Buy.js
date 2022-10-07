@@ -37,6 +37,6 @@ Wallet.hasMany(Buy,{
      foreignKey: 'idBuy'
 });
 
-Buy.sync({force:true});
+//Buy.sync({force:true});
 
 module.exports = Buy;
