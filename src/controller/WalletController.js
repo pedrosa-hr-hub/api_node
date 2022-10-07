@@ -89,6 +89,47 @@ router.delete('/wallet/:id', (req, res) => {
 
 });
 
+router.put('/wallet/:id', (req, res) => {
+
+  try {
+    
+    const user = req.body.user;
+    const wallet_name = req.body.wallet;
+
+    Buy.update({ user: user, wallet: wallet_name },
+      {
+      where: 
+        {
+
+          id: id
+
+        }
+
+    }).then(
+
+      (data) => {
+
+        res.status(200).send(data);
+
+      }
+    ).catch(
+
+      (error) => {
+
+        res.sendStatus(400);
+
+      }
+
+    );
+
+  } catch (error) {
+
+    res.sendStatus(500);
+    
+  }
+  
+});
+
 //----------------------------------routers------------------------------------------//
 
 module.exports = router;
