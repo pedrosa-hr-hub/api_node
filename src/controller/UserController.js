@@ -141,6 +141,48 @@ router.put('/user/:id', (req, res) => {
 
 });
 
+router.post('/userAuth', (req, res) => {
+
+  try {
+    
+    const user = req.body.user;
+    const password = req.body.password;
+
+    User.findOne({ where: {user: user} }).then(
+      (data) => {
+
+        bcrypt.compare(password, data.password).then(
+          
+          (result) => {
+
+            if (result == true) {
+              
+              res.sendStatus(202);
+
+            } else {
+
+              res.sendStatus(400);
+              
+            }
+
+          }
+        )
+
+      }
+
+    ).catch(
+      (error) => {
+        res.sendStatus(400);
+      }
+    );
+
+  } catch (error) {
+
+    res.sendStatus(500);
+    
+  }
+});
+
 //----------------------------------routers------------------------------------------//
 
 module.exports = router;
