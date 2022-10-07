@@ -36,13 +36,13 @@ router.post('/wallet', (req, res) => {
 
 });
 
-router.get('/sell', (res) =>{
+router.get('/sell', (req, res) =>{
     
   try {
 
       Wallet.findAll().then(
           (data)=>{
-              res.sendStatus(200).send(data);
+              res.status(200).send(data);
           }
       ).catch(
           (error) => {
@@ -68,20 +68,10 @@ router.delete('/wallet/:id', (req, res) => {
 
         (data) => {
           
-          Wallet.destroy({ where: {id: id}}).then(
+          Wallet.destroy({ where: {id: id}});
 
-            () => {
-
-              res.sendStatus(200);
-
-            }
-          ).catch(
-            (error) => {
-
-              res.sendStatus(400);
-
-            }
-          )
+          res.sendStatus(200);
+          
         }
       ).catch(
         (error) => {

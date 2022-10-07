@@ -42,13 +42,13 @@ router.post('/user', (req, res) => {
 
 });
 
-router.get('/user', (res) =>{
+router.get('/user', (req, res) =>{
     
   try {
 
       User.findAll().then(
           (data)=>{
-              res.sendStatus(200).send(data);
+              res.status(200).send(data);
           }
       ).catch(
           (error) => {
@@ -74,20 +74,10 @@ router.delete('/user/:id', (req, res) => {
 
         (data) => {
 
-          User.destroy({ where: {id: id}}).then(
-            
-            () => {
+          User.destroy({ where: {id: id}});
 
-              res.sendStatus(200);
-
-            }
-          ).catch(
-            (error) => {
-
-              res.sendStatus(400);
-
-            }
-          )
+          res.sendStatus(200);
+          
         }
       ).catch(
         (error) => {

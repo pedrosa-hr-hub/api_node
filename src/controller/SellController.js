@@ -41,13 +41,13 @@ router.post('/sell', (req, res) => {
 
 });
 
-router.get('/sell', (res) =>{
+router.get('/sell', (req, res) =>{
     
     try {
 
         Sell.findAll().then(
             (data)=>{
-                res.sendStatus(200).send(data);
+                res.status(200).send(data);
             }
         ).catch(
             (error) => {
@@ -73,20 +73,10 @@ router.delete('/sell/:id', (req, res) => {
   
           (data) => {
             
-            Sell.destroy({ where: {id: id}}).then(
-  
-              () => {
-  
-                res.sendStatus(200);
-  
-              }
-            ).catch(
-              (error) => {
-  
-                res.sendStatus(400);
-  
-              }
-            )
+            Sell.destroy({ where: {id: id}});
+
+            res.sendStatus(200);
+            
           }
         ).catch(
           (error) => {
