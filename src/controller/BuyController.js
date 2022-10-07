@@ -28,13 +28,13 @@ router.post('/buy', (req, res) => {
     
         }).catch(()=>{
     
-            res.sendStatus(501);
+            res.sendStatus(400);
     
         });
         
     } catch (error) {
 
-        res.sendStatus(404);
+        res.sendStatus(500);
         
     }
 });
@@ -55,11 +55,52 @@ router.get('/buy', (res) =>{
 
     } catch (error) {
 
-        res.sendStatus(404);
+        res.sendStatus(500);
         
     }
 
 });
+
+router.delete('/wallet/:id', (req, res) => {
+
+    try {
+      
+      const id = req.params.id;
+  
+        Buy.findOne({ where: {id: id} }).then(
+  
+          (data) => {
+            
+            Buy.destroy({ where: {id: id}}).then(
+  
+              () => {
+  
+                res.sendStatus(200);
+  
+              }
+            ).catch(
+              (error) => {
+  
+                res.sendStatus(400);
+  
+              }
+            )
+          }
+        ).catch(
+          (error) => {
+  
+            res.sendStatus(400);
+  
+          }
+        )
+  
+    } catch (error) {
+  
+      res.sendStatus(500);
+      
+    }
+  
+  });
 
 //----------------------------------routers------------------------------------------//
 

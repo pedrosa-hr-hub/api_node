@@ -24,13 +24,13 @@ router.post('/wallet', (req, res) => {
     
       }).catch(()=>{
     
-        res.sendStatus(501);
+        res.sendStatus(400);
     
       });
       
     } catch (error) {
       
-      res.sendStatus(404);
+      res.sendStatus(500);
 
     }
 
@@ -49,15 +49,55 @@ router.get('/sell', (res) =>{
               res.sendStatus(400);
           }
       )
-      
+
   } catch (error) {
 
-      res.sendStatus(404);
+      res.sendStatus(500);
       
   }
 
 });
 
+router.delete('/wallet/:id', (req, res) => {
+
+  try {
+    
+    const id = req.params.id;
+
+      Wallet.findOne({ where: {id: id} }).then(
+
+        (data) => {
+          
+          Wallet.destroy({ where: {id: id}}).then(
+
+            () => {
+
+              res.sendStatus(200);
+
+            }
+          ).catch(
+            (error) => {
+
+              res.sendStatus(400);
+
+            }
+          )
+        }
+      ).catch(
+        (error) => {
+
+          res.sendStatus(400);
+
+        }
+      )
+
+  } catch (error) {
+
+    res.sendStatus(500);
+    
+  }
+
+});
 
 //----------------------------------routers------------------------------------------//
 

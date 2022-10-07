@@ -29,13 +29,13 @@ router.post('/sell', (req, res) => {
     
         }).catch(()=>{
     
-            res.sendStatus(501);
+            res.sendStatus(400);
     
         });
         
     } catch (error) {
         
-        res.sendStatus(404);
+        res.sendStatus(500);
 
     }
 
@@ -54,14 +54,55 @@ router.get('/sell', (res) =>{
                 res.sendStatus(400);
             }
         )
-        
+
     } catch (error) {
 
-        res.sendStatus(404);
+        res.sendStatus(500);
         
     }
 
 });
+
+router.delete('/sell/:id', (req, res) => {
+
+    try {
+      
+      const id = req.params.id;
+  
+        Sell.findOne({ where: {id: id} }).then(
+  
+          (data) => {
+            
+            Sell.destroy({ where: {id: id}}).then(
+  
+              () => {
+  
+                res.sendStatus(200);
+  
+              }
+            ).catch(
+              (error) => {
+  
+                res.sendStatus(400);
+  
+              }
+            )
+          }
+        ).catch(
+          (error) => {
+  
+            res.sendStatus(400);
+  
+          }
+        )
+  
+    } catch (error) {
+  
+      res.sendStatus(500);
+      
+    }
+  
+  });
 
 //----------------------------------routers------------------------------------------//
 
