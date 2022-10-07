@@ -8,28 +8,59 @@ const Sell = require("../model/Sell");
 
 router.post('/sell', (req, res) => {
 
-    const name = req.body.name;
-    const ticker = req.body.ticker;
-    const price = req.body.price;
-    const dateSell = req.body.date;
+    try {
+
+        const name = req.body.name;
+        const ticker = req.body.ticker;
+        const price = req.body.price;
+        const dateSell = req.body.date;
+        
     
+        Sell.create({
+    
+            name: name,
+            ticker: ticker,
+            price:price,
+            dateSell:dateSell,
+    
+        }).then(()=> {
+    
+            res.sendStatus(201);
+    
+        }).catch(()=>{
+    
+            res.sendStatus(501);
+    
+        });
+        
+    } catch (error) {
+        
+        res.sendStatus(404);
 
-    Sell.create({
+    }
 
-        name: name,
-        ticker: ticker,
-        price:price,
-        dateSell:dateSell,
+});
 
-    }).then(()=> {
+router.get('/sell', (res) =>{
+    
+    try {
 
-        res.sendStatus(201);
+        Sell.findAll().then(
+            (data)=>{
+                res.sendStatus(200).send(data);
+            }
+        ).catch(
+            (error) => {
+                res.sendStatus(400);
+            }
+        )
+        
+    } catch (error) {
 
-    }).catch(()=>{
+        res.sendStatus(404);
+        
+    }
 
-        res.sendStatus(501);
-
-    });
 });
 
 //----------------------------------routers------------------------------------------//

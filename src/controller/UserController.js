@@ -9,47 +9,61 @@ const User = require('../model/User');
 
 router.post('/user', (req, res) => {
 
-    //catch infos
-    const user = req.body.user;
-    const password = req.body.password;
-    const email = req.body.email;
+    try {
 
-    //encrypt
-    var salt = bcrypt.genSaltSync(8);
-    var hash = bcrypt.hashSync(password, salt);
+      const user = req.body.user;
+      const password = req.body.password;
+      const email = req.body.email;
 
-    //save on database
-    User.create({
+      var salt = bcrypt.genSaltSync(8);
+      var hash = bcrypt.hashSync(password, salt);
 
-      user: user,
-      email: email,
-      password: hash
+      User.create({
 
-    }).then(()=> {
+        user: user,
+        email: email,
+        password: hash
 
-      res.sendStatus(201);
+      }).then(()=> {
 
-    }).catch(()=>{
+        res.sendStatus(201);
 
-      res.sendStatus(501);
+      }).catch(()=>{
 
-    });
+        res.sendStatus(501);
+
+      });
+      
+    } catch (error) {
+      
+      res.sendStatus(404);
+      
+    }
+
+});
+
+router.get('/user', (res) =>{
+    
+  try {
+
+      User.findAll().then(
+          (data)=>{
+              res.sendStatus(200).send(data);
+          }
+      ).catch(
+          (error) => {
+              res.sendStatus(400);
+          }
+      )
+      
+  } catch (error) {
+
+      res.sendStatus(404);
+      
+  }
 
 });
 
-router.get ('/users',(req, res) =>{
-
-  User.findAll().then(user =>{
-
-    res.status(200).send(user);
-
-  }).catch((error)=>{
-
-    console.log(error);
-
-  });
-
-});
 //----------------------------------routers------------------------------------------//
 
 module.exports = router;
