@@ -94,6 +94,51 @@ router.delete('/sell/:id', (req, res) => {
   
   });
 
+
+router.put('/sell/:id', (req, res) => {
+
+  try {
+    
+    const id = req.params.id;
+    const name = req.body.name;
+    const ticker = req.body.ticker;
+    const price = req.body.price;
+    const dateSell = req.body.date;
+
+    Sell.update({ name: name, ticker: ticker, price: price, date: dateSell },
+      {
+      where: 
+        {
+
+          id: id
+
+        }
+
+    }).then(
+
+      (data) => {
+
+        res.status(200).send(data);
+
+      }
+    ).catch(
+
+      (error) => {
+
+        res.sendStatus(400);
+
+      }
+
+    )
+
+  } catch (error) {
+
+    res.sendStatus(500);
+    
+  }
+  
+});
+
 //----------------------------------routers------------------------------------------//
 
 module.exports = router;
