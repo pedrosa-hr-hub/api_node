@@ -37,6 +37,6 @@ Sell.hasMany(Sell,{
      foreignKey: 'idSell'
 });
 
-//Sell.sync({force:true});
+Sell.sync({force:true});
 
 module.exports = Sell;
