@@ -95,6 +95,51 @@ router.delete('/user/:id', (req, res) => {
 
 });
 
+router.put('/user/:id', (req, res) => {
+
+  try {
+    
+    const id = req.params.id;
+    const user = req.body.user;
+    const password = req.body.password;
+    const email = req.body.email;
+
+    var salt = bcrypt.genSaltSync(8);
+    var hash = bcrypt.hashSync(password, salt);
+
+    User.update({ user: user, password: hash, email: email },
+      {
+      where: 
+        {
+
+          id: id
+
+        }
+
+    }).then(
+
+      (data) => {
+
+        res.status(200).send(data);
+
+      }
+    ).catch(
+
+      (error) => {
+
+        res.sendStatus(400);
+
+      }
+
+    )
+
+  } catch (error) {
+
+    res.sendStatus(500);
+    
+  }
+});
+
 //----------------------------------routers------------------------------------------//
 
 module.exports = router;
