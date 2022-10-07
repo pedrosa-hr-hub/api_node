@@ -128,7 +128,7 @@ router.put('/sell/:id', (req, res) => {
 
       }
 
-    )
+    );
 
   } catch (error) {
 
