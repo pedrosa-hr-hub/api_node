@@ -96,7 +96,7 @@ router.put('/wallet/:id', (req, res) => {
     const user = req.body.user;
     const wallet_name = req.body.wallet;
 
-    Buy.update({ user: user, wallet: wallet_name },
+    Wallet.update({ user: user, wallet: wallet_name },
       {
       where: 
         {
