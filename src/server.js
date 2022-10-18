@@ -1,11 +1,11 @@
 //-----------------------------------config--------------------------------------------//
 
 //express
-const express = require('express');
+const express = require("express");
 const app = express();
 
 //dotenv
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config();
 
 //body parser
@@ -15,6 +15,24 @@ app.use(bodyParser.json());
 
 //port
 const port = process.env.PORT;
+
+//cookie parser
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
+//cors
+const cors = require("cors");
+app.use(cors());
+
+//session
+const session = require("express-session");
+app.use(session({ 
+     secret: "test",
+     cookie: { secure: true, maxAge: 60000 }, 
+     saveUninitialized: true, 
+     resave: true 
+}));
+
 
 //------------------------------------------------------------------------------------//
 
