@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 //cors
 const cors = require("cors");
-app.use(cors());
+app.use(cors({ credentials: true }));
 
 //session
 const session = require("express-session");
