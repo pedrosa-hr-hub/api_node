@@ -158,10 +158,8 @@ router.post('/userAuth', (req, res) => {
           (result) => {
 
             if (result == true) {
-              
-              req.session.index = UUID.v4();
 
-              res.send({id: req.session.index}).status(202);
+              res.sendStatus(202);
 
             } else {
 
