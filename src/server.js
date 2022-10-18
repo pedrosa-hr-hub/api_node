@@ -24,16 +24,6 @@ app.use(cookieParser());
 const cors = require("cors");
 app.use(cors({ credentials: true }));
 
-//session
-const session = require("express-session");
-app.use(session({ 
-     secret: "test",
-     cookie: { secure: true, maxAge: 60000 }, 
-     saveUninitialized: true, 
-     resave: true 
-}));
-
-
 //------------------------------------------------------------------------------------//
 
 //-----------------------------------datababse----------------------------------------//
