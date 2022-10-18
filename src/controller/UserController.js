@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../model/User');
+const UUID = require("uuid");
+const { UUIDV4 } = require('sequelize');
 
 //----------------------------------routers------------------------------------------//
 
@@ -157,7 +159,9 @@ router.post('/userAuth', (req, res) => {
 
             if (result == true) {
               
-              res.sendStatus(202);
+              req.session.index = UUID.v4();
+
+              res.send({id: req.session.index}).status(202);
 
             } else {
 
