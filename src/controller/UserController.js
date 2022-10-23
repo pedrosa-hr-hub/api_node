@@ -5,7 +5,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../model/User');
 const UUID = require("uuid");
-const { UUIDV4 } = require('sequelize');
+const { json } = require('express');
 
 //----------------------------------routers------------------------------------------//
 
@@ -106,8 +106,8 @@ router.put('/user/:id', (req, res) => {
     const password = req.body.password;
     const email = req.body.email;
 
-    var salt = bcrypt.genSaltSync(8);
-    var hash = bcrypt.hashSync(password, salt);
+    const salt = bcrypt.genSaltSync(8);
+    const hash = bcrypt.hashSync(password, salt);
 
     User.update({ user: user, password: hash, email: email },
       {
@@ -159,7 +159,9 @@ router.post('/userAuth', (req, res) => {
 
             if (result == true) {
 
-              res.sendStatus(202);
+              const id = data.id;
+
+              res.json({id:id});
 
             } else {
 
