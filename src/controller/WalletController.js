@@ -3,6 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const Wallet = require('../model/Wallet');
+const Sell = require('../model/Sell');
+const Buy = require('../model/Buy');
 
 //----------------------------------routers------------------------------------------//
 
@@ -15,7 +17,7 @@ router.post('/wallet', (req, res) => {
       
       Wallet.create({
  
-      user: user,
+      idUser: user,
       name: wallet_name,
  
       }).then(()=> {
@@ -36,11 +38,55 @@ router.post('/wallet', (req, res) => {
 
 });
 
-router.get('/sell', (req, res) =>{
+router.get('/wallet', (req, res) =>{
     
   try {
 
       Wallet.findAll().then(
+          (data)=>{
+              res.status(200).send(data);
+          }
+      ).catch(
+          (error) => {
+              res.sendStatus(400);
+          }
+      )
+
+  } catch (error) {
+
+      res.sendStatus(500);
+      
+  }
+
+});
+
+router.get('/walletSell', (req, res) =>{
+    
+  try {
+
+      Wallet.findAll({include: Sell}).then(
+          (data)=>{
+              res.status(200).send(data);
+          }
+      ).catch(
+          (error) => {
+              res.sendStatus(400);
+          }
+      )
+
+  } catch (error) {
+
+      res.sendStatus(500);
+      
+  }
+
+});
+
+router.get('/walletBuy', (req, res) =>{
+    
+  try {
+
+      Wallet.findAll({include: Buy}).then(
           (data)=>{
               res.status(200).send(data);
           }

@@ -14,6 +14,7 @@ router.post('/buy', (req, res) => {
         const ticker = req.body.ticker;
         const price = req.body.price;
         const dateBuy = req.body.date;
+        const idWallet = req.body.wallet;
     
         Buy.create({
     
@@ -21,6 +22,7 @@ router.post('/buy', (req, res) => {
             ticker: ticker,
             price:price,
             dateBuy:dateBuy,
+            idWallet: idWallet
     
         }).then(()=> {
     

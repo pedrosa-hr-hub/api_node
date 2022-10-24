@@ -33,10 +33,6 @@ Sell.belongsTo(Wallet,{
      foreignKey: 'idWallet'
 });
 
-Sell.hasMany(Sell,{
-     foreignKey: 'idSell'
-});
-
 //Sell.sync({force:true});
 
 module.exports = Sell;

@@ -3,7 +3,7 @@ const connection = require("./database");
 const User = require('./User');
 
 const Wallet = connection.define("wallet",{
-     id:{
+     idWallet:{
           type: Sequelize.INTEGER,
           autoIncrement: true,
           allowNull: false,
@@ -16,13 +16,9 @@ const Wallet = connection.define("wallet",{
 });
 
 Wallet.belongsTo(User,{
-     constraint: true,
-     foreignKey: 'idUser'
+     foreignKey: "idUser"
 });
 
-User.hasMany(Wallet,{
-     foreignKey: 'idWallet'
-});
 
 //Wallet.sync({force: true});
 
