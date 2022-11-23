@@ -159,7 +159,7 @@ router.post('/userAuth', (req, res) => {
 
             if (result == true) {
 
-              res.json({id:data.id});
+              res.send(data);
 
             } else {
 
