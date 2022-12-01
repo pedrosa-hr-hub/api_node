@@ -16,9 +16,13 @@ const Wallet = connection.define("wallet",{
 });
 
 Wallet.belongsTo(User,{
+     constraint: true,
      foreignKey: "idUser"
 });
 
+User.hasMany(Wallet,{
+     foreignKey: "idUser"
+});
 
 //Wallet.sync({force: true});
 
