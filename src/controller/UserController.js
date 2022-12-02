@@ -147,10 +147,10 @@ router.post('/userAuth', (req, res) => {
 
   try {
     
-    const user = req.body.user;
+    const email = req.body.email;
     const password = req.body.password;
 
-    User.findOne({ where: {user: user} }).then(
+    User.findOne({ where: {email: email} }).then(
       (data) => {
 
         bcrypt.compare(password, data.password).then(
