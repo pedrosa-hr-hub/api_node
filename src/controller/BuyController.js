@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const Buy = require("../model/Buy");
+const Wallet = require("../model/Wallet");
 
 //----------------------------------routers------------------------------------------//
 
@@ -14,25 +15,38 @@ router.post('/buy', (req, res) => {
         const ticker = req.body.ticker;
         const price = req.body.price;
         const dateBuy = req.body.date;
-        const idWallet = req.body.wallet;
+        const wallet = req.body.wallet;
+
+        Wallet.findOne({ where: { name: wallet}})
+        .then(
+          (data)=>{
+            const idWallet = data.idWallet;
+            dataBuy = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+            Buy.create({
     
-        Buy.create({
-    
-            name: name,
-            ticker: ticker,
-            price:price,
-            dateBuy:dateBuy,
-            idWallet: idWallet
-    
-        }).then(()=> {
-    
-            res.sendStatus(201);
-    
-        }).catch(()=>{
-    
+              name: name,
+              ticker: ticker,
+              price:price,
+              dateBuy:dateBuy,
+              idWallet: idWallet
+      
+          }).then(()=> {
+      
+              res.sendStatus(201);
+      
+          }).catch((error)=>{
+      
+              res.send(error).status(400);
+      
+          });
+          }
+        )
+        .catch(
+          ()=>{
             res.sendStatus(400);
-    
-        });
+          }
+        );
         
     } catch (error) {
 
