@@ -21,6 +21,10 @@ const Buy = connection.define("buy", {
         type: Sequelize.DOUBLE,
         allowNull: false,
     },
+    qtd: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+    },
     dateBuy: {
         type: Sequelize.DATE,
         allowNull: false,
