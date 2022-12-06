@@ -60,50 +60,6 @@ router.get('/wallet', (req, res) =>{
 
 });
 
-router.get('/walletSell', (req, res) =>{
-    
-  try {
-
-      Wallet.findAll({include: Sell}).then(
-          (data)=>{
-              res.status(200).send(data);
-          }
-      ).catch(
-          (error) => {
-              res.sendStatus(400);
-          }
-      )
-
-  } catch (error) {
-
-      res.sendStatus(500);
-      
-  }
-
-});
-
-router.get('/walletBuy', (req, res) =>{
-    
-  try {
-
-      Wallet.findAll({include: Buy}).then(
-          (data)=>{
-              res.status(200).send(data);
-          }
-      ).catch(
-          (error) => {
-              res.sendStatus(400);
-          }
-      )
-
-  } catch (error) {
-
-      res.sendStatus(500);
-      
-  }
-
-});
-
 router.delete('/wallet/:id', (req, res) => {
 
   try {
