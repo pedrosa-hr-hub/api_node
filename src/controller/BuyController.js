@@ -13,6 +13,7 @@ router.post("/buy", (req, res) => {
         const ticker = req.body.ticker;
         const price = req.body.price;
         const dateBuy = req.body.date;
+        const qtd = req.body.qtd;
         const wallet = req.body.wallet;
 
         Wallet.findOne({ where: { name: wallet } })
@@ -28,6 +29,7 @@ router.post("/buy", (req, res) => {
                     ticker: ticker,
                     price: price,
                     dateBuy: dateBuy,
+                    qtd: qtd,
                     idWallet: idWallet,
                 })
                     .then(() => {
