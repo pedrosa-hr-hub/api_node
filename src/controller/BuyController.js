@@ -62,18 +62,24 @@ router.get("/buy", (req, res) => {
 router.get("/buyWallet", (req, res) => {
     try {
         const wallet = req.body.wallet;
+        const user = req.body.user;
 
         Wallet.findOne({ where: { name: wallet } })
             .then(data => {
                 const idWallet = data.idWallet;
+                const idUser = data.idUser;
 
-                Buy.findAll({ where: { idWallet: idWallet } })
-                    .then(data => {
-                        res.send(data).status(200);
-                    })
-                    .catch(error => {
-                        res.sendStatus(400);
-                    });
+                if (user === idUser) {
+                    Buy.findAll({ where: { idWallet: idWallet } })
+                        .then(data => {
+                            res.send(data).status(200);
+                        })
+                        .catch(error => {
+                            res.sendStatus(400);
+                        });
+                } else {
+                    res.sendStatus(401);
+                }
             })
             .catch(error => {
                 res.sendStatus(400);
