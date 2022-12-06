@@ -69,7 +69,7 @@ router.get("/sellWallet", (req, res) => {
                 const idWallet = data.idWallet;
                 const idUser = data.idUser;
 
-                if (user === idUser) {
+                if (user == idUser) {
                     Sell.findAll({ where: { idWallet: idWallet } })
                         .then(data => {
                             res.send(data).status(200);
