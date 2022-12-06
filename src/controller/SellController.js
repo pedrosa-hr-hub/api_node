@@ -59,6 +59,30 @@ router.get("/sell", (req, res) => {
     }
 });
 
+router.get("/sellWallet", (req, res) => {
+    try {
+        const wallet = req.body.wallet;
+
+        Wallet.findOne({ where: { name: wallet } })
+            .then(data => {
+                const idWallet = data.idWallet;
+
+                Sell.findAll({ where: { idWallet: idWallet } })
+                    .then(data => {
+                        res.send(data).status(200);
+                    })
+                    .catch(error => {
+                        res.sendStatus(400);
+                    });
+            })
+            .catch(error => {
+                res.sendStatus(400);
+            });
+    } catch (error) {
+        res.sendStatus(500);
+    }
+});
+
 router.delete("/sell/:id", (req, res) => {
     try {
         const id = req.params.id;
