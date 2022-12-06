@@ -59,7 +59,29 @@ router.get("/buy", (req, res) => {
     }
 });
 
-router.get("/buyOne", (req, res) => {});
+router.get("/buyWallet", (req, res) => {
+    try {
+        const wallet = req.body.wallet;
+
+        Wallet.findOne({ where: { name: wallet } })
+            .then(data => {
+                const idWallet = data.idWallet;
+
+                Buy.findAll({ where: { idWallet: idWallet } })
+                    .then(data => {
+                        res.send(data).status(200);
+                    })
+                    .catch(error => {
+                        res.sendStatus(400);
+                    });
+            })
+            .catch(error => {
+                res.sendStatus(400);
+            });
+    } catch (error) {
+        res.sendStatus(500);
+    }
+});
 
 router.delete("/buy/:id", (req, res) => {
     try {
