@@ -10,7 +10,7 @@ dotenv.config();
 
 //body parser
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //port
@@ -30,50 +30,49 @@ app.use(cors({ credentials: true }));
 
 const connection = require("./model/database");
 connection
-     .authenticate()
-     .then(() => {
-          console.log("DATABASE ONLINE");
-     }).catch((error) =>{
-          console.log(error);
-     });
+    .authenticate()
+    .then(() => {
+        console.log("DATABASE ONLINE");
+    })
+    .catch(error => {
+        console.log(error);
+    });
 
 //------------------------------------------------------------------------------------//
 
 //----------------------------------router-user---------------------------------------//
 
-const UserController = require('./controller/UserController');
+const UserController = require("./controller/UserController");
 
-app.use('/', UserController);
-
-//------------------------------------------------------------------------------------//
-
-//----------------------------------router-wallet-------------------------------------//
-
-const WalletController = require('./controller/WalletController');
-
-app.use('/', WalletController);
+app.use("/", UserController);
 
 //------------------------------------------------------------------------------------//
 
 //----------------------------------router-wallet-------------------------------------//
 
-const SellController = require('./controller/SellController');
+const WalletController = require("./controller/WalletController");
 
-app.use('/', SellController);
+app.use("/", WalletController);
 
 //------------------------------------------------------------------------------------//
 
 //----------------------------------router-wallet-------------------------------------//
 
-const BuyController = require('./controller/BuyController');
+const SellController = require("./controller/SellController");
 
-app.use('/', BuyController);
+app.use("/", SellController);
+
+//------------------------------------------------------------------------------------//
+
+//----------------------------------router-wallet-------------------------------------//
+
+const BuyController = require("./controller/BuyController");
+
+app.use("/", BuyController);
 
 //------------------------------------------------------------------------------------//
 
 //------------------------------------server-run--------------------------------------//
-app.listen(port, () => 
-     console.log(`${port}!`)
-);
+app.listen(port, () => console.log(`${port}!`));
 
 //------------------------------------------------------------------------------------//
