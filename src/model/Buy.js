@@ -32,6 +32,6 @@ Buy.belongsTo(Wallet, {
     foreignKey: "idWallet",
 });
 
-//Buy.sync({force:true});
+//Buy.sync({ force: true });
 
 module.exports = Buy;
