@@ -61,7 +61,7 @@ router.get("/sell", (req, res) => {
     }
 });
 
-router.get("/sellWallet", (req, res) => {
+router.post("/sellWallet", (req, res) => {
     try {
         const wallet = req.body.wallet;
         const user = req.body.user;
