@@ -19,7 +19,7 @@ router.post("/sell", (req, res) => {
         Wallet.findOne({ where: { name: wallet } })
             .then(data => {
                 const idWallet = data.idWallet;
-                dataBuy = new Date()
+                dataSell = new Date()
                     .toISOString()
                     .slice(0, 19)
                     .replace("T", " ");
